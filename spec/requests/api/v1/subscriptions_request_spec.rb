@@ -54,7 +54,7 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
 
   describe "PATCH /update" do
     it 'changes the status of a subscription to canceled when updated successfully' do
-      patch "/api/v1/subscriptions/#{subscription.id}", params: { status: 'canceled' }
+      patch "/api/v1/subscriptions/#{subscription.id}", params: { subscription: { status: 'canceled' } }
       
       expect(response).to have_http_status(:ok)
 
@@ -64,10 +64,20 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
       expect(json_response["status"]).to eq('canceled')
     end
 
+    it 'changes the status of a subscription to active when updated successfully' do
+      patch "/api/v1/subscriptions/#{subscription.id}", params:{ subscription: { status: 'active' } }
+      expect(response).to have_http_status(:ok)
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response["id"]).to eq(subscription.id)
+      expect(json_response["status"]).to eq('active')
+    end
+
     it 'returns an unprocessable entity status when the subscription cannot be updated' do
       allow_any_instance_of(Subscription).to receive(:update).and_return(false)
       
-      patch "/api/v1/subscriptions/#{subscription.id}", params: { status: 'canceled' }
+      patch "/api/v1/subscriptions/#{subscription.id}", params: { subscription: { status: 'canceled' } }
       
       expect(response).to have_http_status(:unprocessable_entity)
 
