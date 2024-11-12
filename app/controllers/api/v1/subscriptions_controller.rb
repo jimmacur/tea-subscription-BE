@@ -13,15 +13,24 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def update
     subscription = find_subscription
-    
-    if subscription.update(status: 'canceled')
+    return if subscription.nil?
+
+    if subscription_params.nil?
+      render json: { message: 'Missing required parameters' }, status: :bad_request
+    elsif subscription.update(subscription_params)
       render_subscription(subscription, :ok)
-    else  
-      render json: {message: "Failed to update subscription" }, status: :unprocessable_entity
+    else
+      render json: { message: "Failed to update subscription", errors: subscription.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
+  
+  def subscription_params
+    params.require(:subscription).permit(:status)
+  rescue ActionController::ParameterMissing
+    nil
+  end
 
   def render_subscription(subscription, status = :ok)
     render json: {
