@@ -1,6 +1,8 @@
-<h1> Tea Subscription 🫖 </h1>
+# Tea Subscription 🫖 (Backend)
 
-This Tea Subscription is a Rails API that manages subscriptions, teas, and customers. The back-end includes key features such as:
+This Tea Subscription is a Rails API that manages subscriptions, teas, and customers.
+
+### Features
 	•	Subscription Endpoints: View all subscriptions, get details of specific subscriptions, and cancel subscriptions while preserving records.
 	•	Active Record Models: Manages relationships between Subscriptions, Teas, and Customers.
 	•	Seeding & Testing: Includes seeded data for testing and RSpec tests for API endpoints.
@@ -20,21 +22,21 @@ The back-end is built to be scalable, secure, and ready for future enhancements.
 <img src="./assets/postman_update.png" alt="homepage view" width="50%">
 
 
-<h2> Context </h2>
+
+## Context
 
 This Tea Subscription Service project was completed as a simulated take-home technical challenge, with a focus on both Frontend (FE) and Backend (BE) development. The project was designed to be completed within a 2-day timeframe, with approximately 8 hours dedicated to the front-end and 8 hours dedicated to the back-end.
 
 The challenge aims to test skills in API development, model relationships, and user interaction, with an emphasis on building a functional and scalable service while managing time effectively.
 
 
-<h2> Tech </h2>
+## Tech Stack
 
-BE - Ruby on Rails, tested with RSpec, simplecov
+- **Backend (BE)**: Ruby on Rails, RSpec for testing, Simplecov for test coverage.
+- **Frontend (FE)**: React, Cypress for frontend testing.
 
-FE - Built with React and tested with Cypress
 
-
-<h2> Installation </h2>
+## Installation
 
 1. Fork and clone this BE repo 
 [Tea Subscription BE repo](https://github.com/jimmacur/tea-subscription-BE)
@@ -57,7 +59,7 @@ FE - Built with React and tested with Cypress
 
 Jim Macur - [linkedin](https://www.linkedin.com/in/jimmacur/) - [gitHub](https://github.com/jimmacur) - jim.macur@gmail.com 
 
-<h2> Learning Goals </h2>
+## Learning Goals
 
 	•	Project Planning and Time Management: Manage and deliver both a front-end and back-end application within a short 2-day timeframe, simulating a real-world technical challenge.
 
