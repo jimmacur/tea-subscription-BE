@@ -34,8 +34,6 @@ RSpec.describe "SubscriptionTeas", type: :request do
     before do
       subscription.teas << existing_tea
     end
-    
-
 
     it 'removes a tea from the subscription' do
       delete "/api/v1/subscriptions/#{subscription.id}/subscription_teas/#{existing_tea.id}"
