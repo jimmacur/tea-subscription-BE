@@ -45,13 +45,14 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def customer_details(subscription)
-    customer = subscription.customers.first
-    {
-      first_name: customer.first_name,
-      last_name: customer.last_name,
-      email: customer.email,
-      address: customer.address
-    }
+    subscription.customers.map do |customer|
+      {
+        first_name: customer.first_name,
+        last_name: customer.last_name,
+        email: customer.email,
+        address: customer.address
+      }
+    end
   end
 
   def tea_details(subscription)
@@ -67,4 +68,3 @@ class Api::V1::SubscriptionsController < ApplicationController
     nil
   end
 end
-
