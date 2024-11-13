@@ -81,6 +81,13 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
       expect(json_response["status"]).to eq('active')
     end
 
+    it 'returns a bad request status when the subscription cannot be updated' do
+      put "/api/v1/subscriptions/#{subscription.id}", params: {}
+
+      expect(response).to have_http_status(:bad_request)
+      expect(response.body).to include('Missing required parameters')
+    end
+
     it 'returns an unprocessable entity status when the subscription cannot be updated' do
       allow_any_instance_of(Subscription).to receive(:update).and_return(false)
       
