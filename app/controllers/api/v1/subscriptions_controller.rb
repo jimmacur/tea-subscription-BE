@@ -55,7 +55,7 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def tea_details(subscription)
     subscription.teas.map do |tea|
-      { title: tea.title, description: tea.description }
+      { title: tea.title, description: tea.description, temperature: tea.temperature, brew_time: tea.brew_time }
     end
   end
 

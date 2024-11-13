@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
   describe 'relationships' do
-    it { should belong_to :customer }
     it { should have_many :subscription_teas }
     it { should have_many(:teas).through(:subscription_teas) }
+    it { should have_many :subscription_customers }
+    it { should have_many(:customers).through(:subscription_customers) }
   end
 
   describe 'enums' do
@@ -13,7 +14,7 @@ RSpec.describe Subscription, type: :model do
     end
 
     it 'defines frequency enum values' do
-      expect(Subscription.frequencies).to eq({ "weekly" => 0, "biweekly" => 1, "monthly" => 2 })
+      expect(Subscription.frequencies).to eq({ "weekly" => 7, "biweekly" => 14, "monthly" => 30 })
     end
 
     it 'allows valid status values' do
