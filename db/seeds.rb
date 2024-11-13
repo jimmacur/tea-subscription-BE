@@ -8,26 +8,34 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-tea_earl_grey = Tea.create(title: "Earl Grey", description: "A classic British black tea with bergamot.", temperature: 95, brew_time: 4)
-tea_green = Tea.create(title: "Green Tea", description: "Light and refreshing green tea leaves.", temperature: 80, brew_time: 3)
-tea_chamomile = Tea.create(title: "Chamomile", description: "A calming herbal tea made from chamomile flowers.", temperature: 100, brew_time: 5)
-tea_peppermint = Tea.create(title: "Peppermint", description: "A refreshing mint tea perfect for digestion.", temperature: 100, brew_time: 5)
-tea_jasmine = Tea.create(title: "Jasmine", description: "A fragrant green tea infused with jasmine blossoms.", temperature: 80, brew_time: 3)
-tea_oolong = Tea.create(title: "Oolong", description: "A partially fermented tea with a complex flavor.", temperature: 90, brew_time: 4)
+customer1 = Customer.create(first_name: "Alice", last_name: "Smith", email: "alice@example.com", address: "123 Elm St")
+customer2 = Customer.create(first_name: "Bob", last_name: "Johnson", email: "bob@example.com", address: "456 Oak St")
+customer3 = Customer.create(first_name: "Charlie", last_name: "Brown", email: "charlie@example.com", address: "789 Pine St")
+customer4 = Customer.create(first_name: "Diana", last_name: "White", email: "diana@example.com", address: "101 Maple St")
 
-customer_1 = Customer.create(first_name: "Alice", last_name: "Johnson", email: "alice.johnson@example.com", address: "123 Elm St, Springfield")
-customer_2 = Customer.create(first_name: "Bob", last_name: "Smith", email: "bob.smith@example.com", address: "456 Oak Ave, Riverside")
-customer_3 = Customer.create(first_name: "Carol", last_name: "Williams", email: "carol.williams@example.com", address: "789 Pine Rd, Lakeview")
-customer_4 = Customer.create(first_name: "Dave", last_name: "Brown", email: "dave.brown@example.com", address: "101 Maple Ln, Brookside")
+tea1 = Tea.create(title: "Earl Grey", description: "A classic British black tea with bergamot.", temperature: 95, brew_time: 4)
+tea2 = Tea.create(title: "Green Tea", description: "Light and refreshing green tea leaves.", temperature: 80, brew_time: 3)
+tea3 = Tea.create(title: "Chamomile", description: "A calming herbal tea made from chamomile flowers.", temperature: 100, brew_time: 5)
+tea4 = Tea.create(title: "Peppermint", description: "A refreshing mint tea perfect for digestion.", temperature: 100, brew_time: 5)
+tea5 = Tea.create(title: "Jasmine", description: "A fragrant green tea infused with jasmine blossoms.", temperature: 80, brew_time: 3)
+tea6 = Tea.create(title: "Oolong", description: "A partially fermented tea with a complex flavor.", temperature: 90, brew_time: 4)
 
-subscription_1 = Subscription.create(title: "Monthly Earl Grey", price: 10.00, status: "active", frequency: "monthly", customer_id: customer_1.id)
-subscription_1.teas << tea_earl_grey
+subscription1 = Subscription.create(title: "Monthly Tea Subscription", price: 15.99, frequency: 30)
+subscription2 = Subscription.create(title: "Biweekly Tea Subscription", price: 9.99, frequency: 14)
+subscription3 = Subscription.create(title: "Weekly Tea Subscription", price: 5.99, frequency: 7)
 
-subscription_2 = Subscription.create(title: "Variety Pack", price: 15.00, status: "active", frequency: "monthly", customer_id: customer_2.id)
-subscription_2.teas << [tea_green, tea_chamomile, tea_peppermint]
+subscription1.customers << customer1
+subscription1.customers << customer2
+subscription2.customers << customer3
+subscription2.customers << customer4
+subscription3.customers << customer1
+subscription3.customers << customer3
 
-subscription_3 = Subscription.create(title: "Herbal Collection", price: 12.00, status: "active", frequency: "monthly", customer_id: customer_3.id)
-subscription_3.teas << [tea_chamomile, tea_peppermint, tea_jasmine]
+subscription1.teas << tea1
+subscription1.teas << tea2
+subscription2.teas << tea3
+subscription2.teas << tea4
+subscription3.teas << tea5
+subscription3.teas << tea6
 
-subscription_4 = Subscription.create(title: "Oolong & Green Tea", price: 14.00, status: "active", frequency: "monthly", customer_id: customer_4.id)
-subscription_4.teas << [tea_oolong, tea_green]
+puts "Seed data created successfully!"

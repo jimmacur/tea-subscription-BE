@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :subscriptions, only: [:index, :show, :update]
+      resources :subscriptions, only: [:index, :show, :update] do
+        resources :subscription_teas, only: [:create, :destroy]
+      end
     end
   end
 
