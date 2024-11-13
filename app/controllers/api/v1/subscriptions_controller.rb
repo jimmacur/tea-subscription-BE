@@ -27,7 +27,7 @@ class Api::V1::SubscriptionsController < ApplicationController
   private
   
   def subscription_params
-    params.require(:subscription).permit(:status)
+    params.require(:subscription).permit(:status, :frequency)
   rescue ActionController::ParameterMissing
     nil
   end
@@ -45,11 +45,12 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def customer_details(subscription)
+    customer = subscription.customers.first
     {
-      first_name: subscription.customer.first_name,
-      last_name: subscription.customer.last_name,
-      email: subscription.customer.email,
-      address: subscription.customer.address
+      first_name: customer.first_name,
+      last_name: customer.last_name,
+      email: customer.email,
+      address: customer.address
     }
   end
 

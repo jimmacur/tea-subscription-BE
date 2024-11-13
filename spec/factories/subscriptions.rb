@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :subscription do
     title { "Monthly Tea Subscription" }
-    price { 15.0 }
+    price { 15.00 }
     status { "active" }
     frequency { "monthly" }
-    customer
+    customers { [FactoryBot.create(:customer)] }
   end
 end

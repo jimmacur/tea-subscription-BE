@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Api::V1::Subscriptions", type: :request do
   let(:customer) { create(:customer) }
-  let(:subscription) { create(:subscription, customer: customer) }
+  let(:subscription) { create(:subscription, customers: [customer]) }
   let(:tea) { create(:tea) }
 
   before do
@@ -11,6 +11,9 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
 
   describe "GET /index" do
     it "returns all subscriptions" do
+      create(:subscription, customers: [customer])
+      create(:subscription, customers: [customer])
+      
       get "/api/v1/subscriptions"
       
       expect(response).to have_http_status(:ok)
@@ -18,6 +21,7 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
       json_response = JSON.parse(response.body)
       
       expect(json_response.size).to eq(Subscription.count)
+      expect(json_response[0]['title']).to eq(subscription.title)
     end
   end
 
@@ -34,10 +38,13 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
       expect(json_response["price"].to_f).to eq(subscription.price.to_f)
       expect(json_response["status"]).to eq(subscription.status)
       expect(json_response["frequency"]).to eq(subscription.frequency)
-      expect(json_response["customer"]["first_name"]).to eq(subscription.customer.first_name)
-      expect(json_response["customer"]["last_name"]).to eq(subscription.customer.last_name)
-      expect(json_response["customer"]["email"]).to eq(subscription.customer.email)
-      expect(json_response["customer"]["address"]).to eq(subscription.customer.address)
+      
+      customer_data = json_response["customer"]
+      expect(customer_data["first_name"]).to eq(subscription.customers.first.first_name)
+      expect(customer_data["last_name"]).to eq(subscription.customers.first.last_name)
+      expect(customer_data["email"]).to eq(subscription.customers.first.email)
+      expect(customer_data["address"]).to eq(subscription.customers.first.address)
+      
       expect(json_response["teas"].size).to eq(subscription.teas.size)
     end
 
@@ -84,6 +91,17 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
       json_response = JSON.parse(response.body)
       
       expect(json_response["message"]).to eq("Failed to update subscription")
+    end
+
+    it 'changes the frequency of a subscription to biweekly when updated successfully' do
+      patch "/api/v1/subscriptions/#{subscription.id}", params: { subscription: { frequency: 'biweekly' } }
+      
+      expect(response).to have_http_status(:ok)
+  
+      json_response = JSON.parse(response.body)
+      
+      expect(json_response["id"]).to eq(subscription.id)
+      expect(json_response["frequency"]).to eq('biweekly')
     end
   end
 end
