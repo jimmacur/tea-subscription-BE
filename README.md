@@ -3,9 +3,9 @@
 This Tea Subscription is a Rails API that manages subscriptions, teas, and customers.
 
 ### Features
-	•	Subscription Endpoints: View all subscriptions, get details of specific subscriptions, and cancel subscriptions while preserving records.
-	•	Active Record Models: Manages relationships between Subscriptions, Teas, and Customers.
-	•	Seeding & Testing: Includes seeded data for testing and RSpec tests for API endpoints.
+- Subscription Endpoints: View all subscriptions, get details of specific subscriptions, and cancel subscriptions while preserving records.
+- Active Record Models: Manages relationships between Subscriptions, Teas, and Customers.
+- Seeding & Testing: Includes seeded data for testing and RSpec tests for API endpoints.
 
 The back-end is built to be scalable, secure, and ready for future enhancements.
 
@@ -13,12 +13,15 @@ The back-end is built to be scalable, secure, and ready for future enhancements.
 
 [Figma Planning project board](https://www.figma.com/board/52FUFMkcAHFmeJ2qYQCtzJ/Take-Home-final-mod-3?node-id=0-1&node-type=canvas&t=3rete0JI4XdkUFN2-0)
 
-<img src="./assets/dbio.png" alt="homepage view" width="50%">
+<img src="./assets/dbio.png" alt="homepage view" width="80%">
 
+## Index
 <img src="./assets/postman_all.png" alt="homepage view" width="50%">
 
+## Show
 <img src="./assets/postman_1.png" alt="homepage view" width="50%">
 
+## Update - Status
 <img src="./assets/postman_update.png" alt="homepage view" width="50%">
 
 
