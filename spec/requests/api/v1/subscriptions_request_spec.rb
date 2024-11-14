@@ -40,10 +40,11 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
       expect(json_response["frequency"]).to eq(subscription.frequency)
       
       customer_data = json_response["customer"]
-      expect(customer_data["first_name"]).to eq(subscription.customers.first.first_name)
-      expect(customer_data["last_name"]).to eq(subscription.customers.first.last_name)
-      expect(customer_data["email"]).to eq(subscription.customers.first.email)
-      expect(customer_data["address"]).to eq(subscription.customers.first.address)
+   
+      expect(customer_data.first["first_name"]).to eq(subscription.customers.first.first_name)
+      expect(customer_data.first["last_name"]).to eq(subscription.customers.first.last_name)
+      expect(customer_data.first["email"]).to eq(subscription.customers.first.email)
+      expect(customer_data.first["address"]).to eq(subscription.customers.first.address)
       
       expect(json_response["teas"].size).to eq(subscription.teas.size)
     end
